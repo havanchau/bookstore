@@ -104,7 +104,7 @@ const Result = () => {
     if (orderCodeString && orderCodeString.trim() !== "") {
       id = parseInt(orderCodeString);
       axios
-        .get(`${BASE_API_URL}/payments/${id}`)
+        .get(`https://bookstore-zukd.vercel.app/api/payments/${id}`)
         .then((response) => {
           console.log(response);
           setPaymentStatus(response.data.paymentInfo.status);
