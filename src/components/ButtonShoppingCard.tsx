@@ -42,15 +42,38 @@ const ButtonShoppingCard: React.FC<Information> = ({ name, email }) => {
     }
 
     
-    axios
-    .post(`${DOMAIN}/api/payments`)
-    .then((response) => {
-        localStorage.setItem("username", name);
-        localStorage.setItem("email", email);
-        localStorage.setItem("orderCode", response.data.orderCode);
-        router.push(response.data.link)
+    // axios
+    // .post(`${DOMAIN}/api/payments`)
+    // .then((response) => {
+    //     localStorage.setItem("username", name);
+    //     localStorage.setItem("email", email);
+    //     localStorage.setItem("orderCode", response.data.orderCode);
+    //     router.push(response.data.link)
+    //   })
+    //   .catch((error) => console.log(error));
+
+      fetch(`${DOMAIN}/api/payments`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch((error) => console.log(error));
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          localStorage.setItem('username', name);
+          localStorage.setItem('email', email);
+          localStorage.setItem('orderCode', data.orderCode);
+          router.push(data.link);
+        })
+        .catch((error) => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+      
   };
 
   return (
