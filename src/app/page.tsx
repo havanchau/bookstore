@@ -1,9 +1,17 @@
-'use client'
+"use client";
+import React, { useEffect } from "react";
 import ActionAreaCard from "@/components/ActionAreaCard";
 import StateTextFields from "@/components/StateTextFields";
-
+import axios from "axios";
+import { BASE_API_URL } from "@/ultils/contranst";
 
 const Home = () => {
+  useEffect(() => {
+    axios
+      .get(`${BASE_API_URL}/payments/2369704266273513`)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <main className="w-full">
