@@ -70,7 +70,7 @@ const Result = () => {
       if (email && subject && html && localStorage) {
         axios
           .post(
-            `/sendmails`,
+            `/api/sendmails`,
             {
               email: email.toString(),
               subject: subject,
@@ -83,7 +83,6 @@ const Result = () => {
             }
           )
           .then((response) => {
-            console.log(response);
             localStorage.removeItem("email");
             localStorage.removeItem("username");
           })
@@ -104,7 +103,6 @@ const Result = () => {
       axios
         .get(`/api/payments/${id}`)
         .then((response) => {
-          console.log(response);
           setPaymentStatus(response.data.paymentInfo.status);
         })
         .catch((error) => console.log(error));
@@ -114,51 +112,57 @@ const Result = () => {
   });
 
   useEffect(() => {
-    if (paymentStatus == "PAIED") {
+    if (paymentStatus == "PAID") {
       handleSendEmail();
     }
   }, [paymentStatus]);
 
   return (
     <div className="flex items-center justify-center">
-      {paymentStatus == "PAID" ? (
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div className="flex items-center justify-center">
-            <Typography variant="h4" color="text.secondary">
-              <SentimentSatisfiedAltIcon
-                fontSize="large"
-                sx={{ marginRight: 4 }}
-              />
-              Thanh toán thành công, vui lòng kiểm tra email để nhận sách.
-            </Typography>
-          </div>
-        </Box>
+      {paymentStatus ? (
+        <div className="flex items-center justify-center">
+          {paymentStatus == "PAID" ? (
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "50ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <div className="flex items-center justify-center">
+                <Typography variant="h4" color="text.secondary">
+                  <SentimentSatisfiedAltIcon
+                    fontSize="large"
+                    sx={{ marginRight: 4 }}
+                  />
+                  Thanh toán thành công, vui lòng kiểm tra email để nhận sách.
+                </Typography>
+              </div>
+            </Box>
+          ) : (
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1, width: "50ch" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <div className="flex items-center justify-center">
+                <SentimentVeryDissatisfiedIcon
+                  fontSize="large"
+                  sx={{ marginRight: 4 }}
+                />
+                <Typography variant="h4" color="text.secondary">
+                  Có lỗi xảy ra, vui lòng kiểm tra lại.
+                </Typography>
+              </div>
+            </Box>
+          )}
+        </div>
       ) : (
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "50ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div className="flex items-center justify-center">
-            <SentimentVeryDissatisfiedIcon
-              fontSize="large"
-              sx={{ marginRight: 4 }}
-            />
-            <Typography variant="h4" color="text.secondary">
-              Có lỗi xảy ra, vui lòng kiểm tra lại.
-            </Typography>
-          </div>
-        </Box>
+        <div></div>
       )}
     </div>
   );

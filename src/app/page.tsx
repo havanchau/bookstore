@@ -9,10 +9,10 @@ const Home = () => {
     <main className="w-full">
       <div className="flex-row items-center justify-center mt-12">
         <div className="w-full flex flex-wrap items-start justify-center">
-          <div className="w-1/3 min-w-[20rem] mr-8">
+          <div className="w-1/3 min-w-[20rem] mx-4">
             <ActionAreaCard />
           </div>
-          <div className="w-1/3 min-w-[20rem]">
+          <div className="w-1/3 min-w-[20rem] mx-4">
             <StateTextFields />
           </div>
         </div>

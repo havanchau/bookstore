@@ -11,7 +11,7 @@ export default function StateTextFields() {
   return (
     <Box
       component="form"
-      sx={{ width: 320 }}
+      sx={{ maxWidth: 320 }}
 
       noValidate
       autoComplete="off"
