@@ -5,6 +5,8 @@ import Stack from "@mui/material/Stack";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+import { BASE_API_URL } from "@/ultils/contranst";
+
 import Notification, {
   warningNotification,
   errorNotification,
@@ -41,7 +43,7 @@ const ButtonShoppingCard: React.FC<Information> = ({ name, email }) => {
 
     
     axios
-    .post(`http://localhost:3000/api/payments`)
+    .post(`${BASE_API_URL}/payments`)
     .then((response) => {
         localStorage.setItem("username", name);
         localStorage.setItem("email", email);

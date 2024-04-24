@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import React, { useState, useEffect } from "react";
 
+import { BASE_API_URL } from "@/ultils/contranst";
+
 const Result = () => {
   const [paymentStatus, setPaymentStatus] = useState("");
 
@@ -70,7 +72,7 @@ const Result = () => {
       if (email && subject && html && localStorage) {
         axios
           .post(
-            "http://localhost:3000/api/sendmails",
+            `${BASE_API_URL}/sendmails`,
             {
               email: email.toString(),
               subject: subject,
@@ -102,7 +104,7 @@ const Result = () => {
     if (orderCodeString && orderCodeString.trim() !== "") {
       id = parseInt(orderCodeString);
       axios
-        .get(`http://localhost:3000/api/payments/${id}`)
+        .get(`${BASE_API_URL}/payments/${id}`)
         .then((response) => {
           console.log(response);
           setPaymentStatus(response.data.paymentInfo.status);

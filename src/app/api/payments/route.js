@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 const PayOS = require("@payos/node");
 
+import { DOMAIN } from "@/../../src/ultils/contranst";
+
 const payos = new PayOS(
   process.env.CLIENT_KEY,
   process.env.API_KEY,
@@ -15,8 +17,8 @@ export const POST = async () => {
       amount: 2000,
       description: "Thanh toan phi mua sach",
       orderCode: orderCode,
-      returnUrl: `localhost:3000/result`,
-      cancelUrl: `localhost:3000/result`,
+      returnUrl: `${DOMAIN}/result`,
+      cancelUrl: `${DOMAIN}/result`,
     };
 
     const paymentLink = await payos.createPaymentLink(order);
