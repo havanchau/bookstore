@@ -9,7 +9,7 @@ import React, { useState, useEffect } from "react";
 const Result = () => {
   const [paymentStatus, setPaymentStatus] = useState("");
 
-  const handleSendEmail = () => {
+  const handleSendEmail = async () => {
     if (typeof window != undefined) {
       const email = localStorage.getItem("email");
       const name = localStorage.getItem("username");
