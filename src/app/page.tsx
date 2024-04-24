@@ -8,7 +8,7 @@ import { BASE_API_URL } from "@/ultils/contranst";
 const Home = () => {
   useEffect(() => {
     axios
-      .get(`${BASE_API_URL}/payments/2369704266273513`)
+      .get(`https://bookstore-zukd.vercel.app/api/payments/2369704266273513`)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }, []);
