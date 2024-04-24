@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 const PayOS = require("@payos/node");
 
-import { DOMAIN } from "@/../../src/ultils/contranst";
+import {
+  CLIENT_KEY,
+  API_KEY,
+  CHECKSUM_KEY,
+  DOMAIN,
+} from "@/../../src/ultils/contranst";
 
-const payos = new PayOS(
-  process.env.CLIENT_KEY,
-  process.env.API_KEY,
-  process.env.CHECKSUM_KEY
-);
+const payos = new PayOS(CLIENT_KEY, API_KEY, CHECKSUM_KEY);
 
 export const POST = async () => {
   try {
@@ -28,5 +29,4 @@ export const POST = async () => {
     console.error("Error creating payment link:", error);
     return NextResponse.json({ message: "Failed" }, { status: 400 });
   }
-}
-
+};
