@@ -6,8 +6,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import React, { useState, useEffect } from "react";
 
-import { BASE_API_URL } from "@/ultils/contranst";
-
 const Result = () => {
   const [paymentStatus, setPaymentStatus] = useState("");
 
@@ -72,7 +70,7 @@ const Result = () => {
       if (email && subject && html && localStorage) {
         axios
           .post(
-            `${BASE_API_URL}/sendmails`,
+            `/sendmails`,
             {
               email: email.toString(),
               subject: subject,
@@ -104,7 +102,7 @@ const Result = () => {
     if (orderCodeString && orderCodeString.trim() !== "") {
       id = parseInt(orderCodeString);
       axios
-        .get(`https://bookstore-zukd.vercel.app/api/payments/${id}`)
+        .get(`/api/payments/${id}`)
         .then((response) => {
           console.log(response);
           setPaymentStatus(response.data.paymentInfo.status);
