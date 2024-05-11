@@ -88,7 +88,7 @@ const Result = () => {
           })
           .catch((error) => console.log(error));
       } else {
-        console.error("Email, subject, hoặc html không được xác định.");
+        console.error("Email, subject, or html is invalid.");
       }
     } else {
       console.error("localStorage is not available in this environment.");

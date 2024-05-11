@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
+import {
+  CLIENT_KEY,
+  API_KEY,
+  CHECKSUM_KEY,
+} from "@/../../src/ultils/contranst";
+
 const PayOS = require("@payos/node");
 
+
 const payos = new PayOS(
-  process.env.CLIENT_KEY,
-  process.env.API_KEY,
-  process.env.CHECKSUM_KEY
+  CLIENT_KEY,
+  API_KEY,
+  CHECKSUM_KEY
 );
 
 export async function GET(res, { params }) {

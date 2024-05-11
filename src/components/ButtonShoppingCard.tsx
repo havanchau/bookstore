@@ -40,7 +40,9 @@ const ButtonShoppingCard: React.FC<Information> = ({ name, email }) => {
     }
 
     axios
-      .post(`/api/payments`)
+      .post(`/api/payments`, {
+        price: 1000
+      })
       .then((response) => {
         localStorage.setItem("username", name);
         localStorage.setItem("email", email);
@@ -49,6 +51,8 @@ const ButtonShoppingCard: React.FC<Information> = ({ name, email }) => {
       })
       .catch((error) => console.log(error));
   };
+
+  console.log('render in button components');
 
   return (
     <Stack direction="row" sx={{ marginTop: 4 }}>

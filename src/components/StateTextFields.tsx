@@ -7,20 +7,15 @@ import ButtonShoppingCard from "@/components/ButtonShoppingCard";
 export default function StateTextFields() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  console.log("render in fields text components");
 
   return (
-    <Box
-      component="form"
-      sx={{ maxWidth: 320 }}
-
-      noValidate
-      autoComplete="off"
-    >
+    <Box component="form" sx={{ maxWidth: 320 }} noValidate autoComplete="off">
       <TextField
         id="username"
         label="Nhập tên của bạn"
         value={name}
-        sx={{ width: '100%', marginTop: 2 }}
+        sx={{ width: "100%", marginTop: 2 }}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setName(event.target.value);
         }}
@@ -29,12 +24,12 @@ export default function StateTextFields() {
         id="email"
         label="Nhập email của bạn"
         value={email}
-        sx={{ width: '100%', marginTop: 2 }}
+        sx={{ width: "100%", marginTop: 2 }}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setEmail(event.target.value);
         }}
       />
-      <ButtonShoppingCard name={name} email={email}/>
+      <ButtonShoppingCard name={name} email={email} />
     </Box>
   );
 }

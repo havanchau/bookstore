@@ -10,12 +10,13 @@ import {
 
 const payos = new PayOS(CLIENT_KEY, API_KEY, CHECKSUM_KEY);
 
-export const POST = async () => {
+export const POST = async (req) => {
   try {
     const orderCode = Math.floor(Math.random() * 9007199254740991);
-
+    const { price } = await req.json();
+    const priceToInt = parseInt(price);
     const order = {
-      amount: 2000,
+      amount: 100000,
       description: "Thanh toan phi mua sach",
       orderCode: orderCode,
       returnUrl: `${DOMAIN}/result`,
